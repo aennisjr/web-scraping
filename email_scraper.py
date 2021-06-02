@@ -1,5 +1,6 @@
 import asyncio
 import re
+import validators
 from pyppeteer import launch
 from pandas import DataFrame
 
@@ -20,26 +21,29 @@ async def main():
     # Loop through the URLs in the list
     for u in urls:
         
-        # Open a new tab in the browser 
-        # - wait until network idle status is achieved (all content loaded)
-        page = await browser.newPage()
-        await page.goto(u, {'waitUntil': 'networkidle2'})
+        if validators.url(str(u)):
+            # Open a new tab in the browser 
+            # - wait until network idle status is achieved (all content loaded)
+            page = await browser.newPage()
+            await page.goto(u, {'waitUntil': 'networkidle2'})
 
-        # Capture all body content
-        content = await page.evaluate('document.body.innerHTML')
+            # Capture all body content
+            content = await page.evaluate('document.body.innerHTML')
 
-        # Grab emails from the page
-        found = re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", str(content).lower())
+            # Grab emails from the page
+            found = re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", str(content).lower())
 
-        if found: # store found email addresses in emails list
-            for f in found:
-                print(f)
-                emails.append(f)
+            if found: # store found email addresses in emails list
+                for f in found:
+                    print(f)
+                    emails.append(f)
+            else:
+                print("No emails found on " + str(u))
+            
+            # Close browser window
+            await page.close()
         else:
-            print("No emails found on " + str(u))
-        
-        # Close browser window
-        await page.close()
+            print("Invalid URL " + str(u))
 
     # Close browser
     await browser.close()
