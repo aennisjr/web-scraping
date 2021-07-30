@@ -1,6 +1,7 @@
 import asyncio
 import re
 import validators
+import sys
 from pyppeteer import launch
 from pandas import DataFrame
 
@@ -48,16 +49,19 @@ async def main():
     # Close browser
     await browser.close()
 
-    # Display captured email addresses
-    print(emails)
+    if emails:
+        # Display captured email addresses
+        print(emails)
 
-    # Convert list to dataframe
-    df = DataFrame (emails, columns=['email_addresses'])
+        # Convert list to dataframe
+        df = DataFrame (emails, columns=['email_addresses'])
 
-    # Drop duplicate entries
-    df.drop_duplicates(subset='email_addresses', keep="last", inplace=True)
-    
-    # Save to CSV
-    df.to_csv('email_addresses.csv', index=False)
+        # Drop duplicate entries
+        df.drop_duplicates(subset='email_addresses', keep="last", inplace=True)
+        
+        # Save to CSV
+        df.to_csv('email_addresses.csv', index=False)
+    else:
+        print('Process complete. No email addresses found.')
     
 asyncio.get_event_loop().run_until_complete(main())
