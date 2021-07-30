@@ -26,7 +26,7 @@ async def main():
             # Open a new tab in the browser 
             # - wait until network idle status is achieved (all content loaded)
             page = await browser.newPage()
-            await page.goto(u, {'waitUntil': 'networkidle2'})
+            await page.goto(u, {'waitUntil': 'networkidle2', 'timeout': 60000})
 
             # Capture all body content
             content = await page.evaluate('document.body.innerHTML')
