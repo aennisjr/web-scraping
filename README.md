@@ -28,3 +28,6 @@ You can install validators using pip. Supports python versions 2.7, 3.3, 3.4, 3.
 Notes:
 
 `df.to_csv('email_addresses.csv', index=False)` - saves your data in a CSV file called "email_addresses.csv". You can use other methods such as `to_html` `to_json` `to_excel` etc. in order to save it in other formats. You can find a reference to this and other methods here: [Pandas API](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html)
+
+## traversive_email_scraper.py
+Can be used to traverse several pages of a website in order to collect email addresses. Much like email_scraper.py, just define a list of URLs then execute the program in order to start the crawling process.
