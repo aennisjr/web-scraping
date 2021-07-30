@@ -7,6 +7,7 @@ Dependencies:
 - asyncio - asyncio is a library to write concurrent code using the async/await syntax.
 - pyppeteer - unofficial Python port of puppeteer JavaScript (headless) chrome/chromium browser automation library.
 - pandas - data analysis and manipulation tool
+- validators - data validation library
 
 pyppeteer requires Python >= 3.6. Install with pip from PyPI:
 
@@ -19,6 +20,10 @@ Or install the latest version from this github repo:
 pandas can be installed via pip from PyPI. Requires Python 3.7.1 and above.
 
 ```pip install pandas```
+
+You can install validators using pip. Supports python versions 2.7, 3.3, 3.4, 3.5 and PyPy:
+
+```pip install validators```
 
 Notes:
 
