@@ -1,7 +1,6 @@
 import asyncio
 import re
 import validators
-import sys
 from pyppeteer import launch
 from pandas import DataFrame
 
