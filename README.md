@@ -31,3 +31,7 @@ Notes:
 
 ## traversive_email_scraper.py
 Can be used to automatically traverse/crawl several pages of a website in order to collect email addresses. Much like email_scraper.py, just define a list of URLs then execute the program in order to start the crawling process.
+
+Requires BeautifulSoup4 (in addition to the ones mentioned above)
+
+```pip install beautifulsoup4```
