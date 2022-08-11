@@ -34,7 +34,7 @@ async def main():
             w = csv.writer(file)
             w.writerow(['website', 'email'])
             # Launch a new browser window
-            browser = await launch({ 'headless': True })
+            browser = await launch({ 'headless': True, 'autoClose': False })
 
             for u in urls:
 
@@ -119,9 +119,7 @@ async def main():
 
                 count += 1
 
-            if not emails:
-                print('Process complete. No email addresses found.')
-            else:
-                print('Process complete. ' + str(len(emails)) + ' items found.')
+            print('\nProcess complete \n' + str(len(emails)) + ' items found.')
     
-asyncio.get_event_loop().run_until_complete(main())
+# asyncio.get_event_loop().run_until_complete(main())
+asyncio.run(main())
