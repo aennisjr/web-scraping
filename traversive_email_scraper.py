@@ -2,6 +2,7 @@ import asyncio
 import re
 import validators
 import csv
+from datetime import datetime
 from pyppeteer import launch
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
@@ -28,8 +29,9 @@ async def main():
 
     if(len(urls) > 0):
         count = 1
+        now = datetime.now()
 
-        with open('email_addresses.csv', 'w') as file:
+        with open('email_addresses_' + now.strftime("%d-%m-%Y_%H-%M-%S") + '.csv', 'w') as file:
 
             w = csv.writer(file)
             w.writerow(['website', 'email'])
